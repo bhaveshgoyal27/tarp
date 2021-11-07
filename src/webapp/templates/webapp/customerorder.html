@@ -1,0 +1,72 @@
+{% extends 'webapp/base.html'%}
+{% block title %}orderplaced{% endblock %}
+<style>
+	.card {
+	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	  max-width: 300px;
+	  margin: auto;
+	  text-align: center;
+	  font-family: arial;
+	}
+	
+	.price {
+	  color: grey;
+	  font-size: 22px;
+	}
+	
+	.deco{
+	  border: none;
+	  outline: 0;
+	  padding: 12px;
+	  color: white;
+	  background-color: #000;
+	  text-align: center;
+	  width: 100%;
+	  font-size: 18px;
+	}
+	
+	.card button:hover {
+	  opacity: 0.7;
+	}
+	</style>
+{% block body %}
+	<div class="container">
+		<br>
+		{% for i in l %}
+		<div class="card">
+			<h1>Order Id: {{i.0.id}}</h1>
+			<h1>Total Amount: {{i.0.total_amount}}</h1>
+			<p>Odererd at: {{i.0.timestamp}}</p>
+			<p>Address:  {{i.0.delivery_addr}}</p>
+			<p>Vendor : {{i.0.v_id}}</p>
+			<p>Status : {{i.0.status}}</p>
+			<table class="table table-hover table-bordered">
+					<thead>
+						<th>Item Image</th>
+						<th>Item Id</th>
+						<th>Item Description</th>
+						<th>Quantity ordered</th>
+						<th>Price per piece</th>
+					</thead>
+			{% for j in i.1 %}
+			<tr>
+				<td><img src="{{j.1.item_img.url}}"></td>
+				<td>{{j.0.id}}</td>
+				<td>{{j.1.description}}</td>
+				<td>{{j.0.quantity}}</td>
+				<td>{{j.1.price}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+		{% endfor %}
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+{% endblock%}

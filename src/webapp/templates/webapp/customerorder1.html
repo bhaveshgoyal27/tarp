@@ -1,0 +1,31 @@
+{% extends 'webapp/base.html'%}
+{% block title %}orderplaced{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<br>
+		{% for i in l %}
+			<h1>Order Id: {{i.0.id}}</h1>
+			<h1>Total Amount: {{i.0.total_amount}}</h1>
+			<p>Odererd at: {{i.0.timestamp}}</p>
+			<p>Address:  {{i.0.delivery_addr}}</p>
+			<p>Vendor : {{i.0.v_id}}</p>
+			<p>Status : {{i.0.status}}</p>
+			{% for j in i.1 %}
+				<p>Item id : {{j.0.id}}</p>
+				<p>Quantity ordered : {{j.0.quantity}}</p>
+				<p>Price per piece : {{j.1.price}}</p>
+				<p>Item description : {{j.1.description}}</p>
+				<p>Item Image<img src="{{j.1.item_img.url}}"></p>
+			{% endfor %}
+		{% endfor %}
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+{% endblock%}
